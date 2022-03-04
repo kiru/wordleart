@@ -4,7 +4,17 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      container: {
+        padding: {
+          DEFAULT: '2rem',
+          sm: '4rem',
+          lg: '8rem',
+          xl: '10rem',
+          '2xl': '12rem',
+        },
+      },
+    },
   },
   plugins: [],
 }

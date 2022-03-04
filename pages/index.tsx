@@ -1,84 +1,182 @@
-import type { NextPage } from 'next'
+import type {NextPage} from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import {useEffect, useState} from "react";
+import copy = Simulate.copy;
+
+interface RowProps {
+  length: number,
+  currentColor: string,
+  value: string[]
+}
+
+// ⬛⬛⬛⬛⬛
+// 🟨⬛🟨🟩⬛
+// 🟩🟩🟩🟩
+// 🟩
+
+const Row = ({length, currentColor, value}: RowProps) => {
+  const [values, setValues] = useState<string[]>([]);
+
+  useEffect(() => {
+    setValues(new Array(length).fill(currentColor))
+  }, [length])
+
+  useEffect(() => {
+    setValues(value)
+  }, [value])
+
+
+  let changeValue = (index: number) => {
+    setValues(prev => {
+      let copy = [...prev];
+      copy[index] = currentColor;
+      return copy;
+    });
+    console.log("change value", index, currentColor);
+  }
+
+  return (
+    <div className="flex flex-row gap-2">
+      {values.map((each, i) => {
+        return <div key={i} className="cursor-pointer transition-colors	" onClick={() => changeValue(i)}>
+          {each}
+        </div>
+      })}
+    </div>
+  )
+}
+
+let multiply = (times: number, value: string): string => {
+  let s = ""
+  for (let i = 0; i < times; i++) {
+    s += value;
+  }
+  return s;
+}
+
+const WordleArtDrawer = () => {
+  const [rows, setRows] = useState<number>(5);
+  const [columns, setColumns] = useState<number>(5);
+  const [currentColor, setCurrentColor] = useState<string>("🟩");
+
+  const [values, setValues] = useState<string[][]>([[]])
+
+  useEffect(() => {
+    setValues(prev => {
+      let copy = [...prev];
+      if (rows < copy.length) {
+        copy = copy.slice(0, rows)
+      } else if (rows > copy.length) {
+        for (let i = copy.length; i < rows; i++) {
+          var xx = new Array(columns).fill(currentColor);
+          copy.push(xx)
+        }
+      } else {
+
+        // columns changed
+        console.log("jj");
+        for (let i = 0; i < copy.length; i++) {
+          var xx = new Array(columns).fill(currentColor);
+          copy[i] =  xx;
+        }
+
+      }
+      return copy;
+    })
+
+  }, [rows, columns])
+
+  return (
+    <div>
+
+      <div className="my-3">
+        Rows: {rows}
+        <div>
+          1 <input type="range" min={1} max={20} onInput={e => {
+          // @ts-ignore
+          console.log(e.target.value)
+          setRows(e.target.value);
+        }}/> 20
+        </div>
+      </div>
+      <div className="my-3">
+        Columns: {columns}
+        <div>
+          1 <input type="range" min={1} max={20} onInput={e => {
+          // @ts-ignore
+          console.log(e.target.value)
+          setColumns(e.target.value);
+        }}/> 20
+        </div>
+      </div>
+
+
+      <div className="flex flex-col text-3xl">
+        {values.map((each, i) => {
+          return <Row key={i}  length={columns} currentColor={currentColor} value={each}/>
+        })}
+      </div>
+
+      <div className="mt-5">
+        Current color: {currentColor}
+      </div>
+
+      <div className="tracking-wider">
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟥")}>🟥</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟧")}>🟧</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟨")}>🟨</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟩")}>🟩</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟦")}>🟦</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟪")}>🟪</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("⬛")}>⬛</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("⬜")}>⬜</span>
+        <span className="cursor-pointer" onClick={() => setCurrentColor("🟫")}>🟫</span>
+      </div>
+    </div>
+  )
+}
 
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Wordleart</title>
+        <link rel="icon" href="/favicon.ico"/>
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <main className="flex flex-1 flex-col mt-20 text-center container">
+        <div className="my-3 w-full">
+          <h1 className="text-6xl font-bold border-b text-blue-600 border-blue-600">Wordleart</h1>
         </div>
-      </main>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+
+        <div className="p-5 text-center justify-center flex">
+
+          <WordleArtDrawer/>
+
+        </div>
+
+        <div className="text-lg text-left border border-blue-300 rounded p-5">
+      <pre>{`
+What do I want?
+[ ] Define how many rows
+[ ] Define how many columns
+[x] Show initially some green ones
+[x] Ability to change the colors of each block
+[ ] Abiltiy to define the spacing between
+[ ] Super: Export to PNG
+[ ] Deploy to wordleart.kiru.io
+[ ] Set proper Favicon 
+[ ] Add a Wordleart icon here 
+[ ] Add Plausible.io
+[ ] Ability to export the patterns!
+[ ] Add proper og:tags 
+[ ] Add Twitter card
+`}</pre>
+        </div>
+
+
+      </main>
     </div>
   )
 }
