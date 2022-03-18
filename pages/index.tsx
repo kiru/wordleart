@@ -171,24 +171,24 @@ const Home: NextPage = () => {
               content="Create your own emoji block based wordle art"/>
         <meta property="og:title" content="WorldeArt"/>
         <meta property="og:image" content="https://wordleart.kiru.io/TwitterCard.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       </Head>
 
-      <main className="flex flex-col items-center justify-center py-2">
+      <main className="flex flex-col items-center justify-center my-8 ">
         <div className="flex flex-col mt-5 items-center">
           <img src="square.png" className="w-24 " alt="Logo"/>
-          <h1 className="text-2xl font-bold text-black drop-shadow text-blue-500">WordleArt</h1>
+          <h1 className="text-2xl font-bold text-black text-blue-500">WordleArt</h1>
         </div>
 
-        <div className="flex flex-1 flex-col mt-5 text-center  rounded-3xl shadow border border-slate-300 ">
+        <div className="flex flex-1 flex-col mt-5 text-center sm:rounded-3xl shadow border border-slate-300">
           <div className="p-5 text-center justify-center flex bg-white rounded-t-3xl">
             <WordleArtDrawer/>
           </div>
 
           <div><Toaster/></div>
 
-
-          <div className="text-lg text-left p-5 bg-blue-100 font-mono rounded-b-3xl">
+          <div className="text-lg text-left p-5 bg-blue-100 font-mono sm:rounded-b-3xl">
             <h2 className="text-xl">What is this project about?</h2>
             <p className="w-1/2 pt-2 text-slate-700">
               I wanted a simple tool to create logo similar to how people share their Wordle results.
@@ -210,14 +210,12 @@ const Home: NextPage = () => {
               </div>
             </p>
 
-
-            <pre>{`
-Roadmap
-[ ] Deploy to wordleart.kiru.io
+            <h2 className="text-xl pt-5">Roadmap</h2>
+            <pre className="whitespace-pre-wrap	">
+{`[ ] Deploy to wordleart.kiru.io
 [ ] Write an article on my page
 [ ] Publish project on GitHub as Open Source (why not?)(postponed for now)
-[ ] Clean this code a bit before putting it on GitHub
-`}</pre>
+[ ] Clean this code a bit before putting it on GitHub`}</pre>
           </div>
         </div>
 
