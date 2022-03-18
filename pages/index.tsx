@@ -141,10 +141,8 @@ const WordleArtDrawer = () => {
         <span className="cursor-pointer" onClick={() => setCurrentColor("🟫")}>🟫</span>
       </div>
 
-      <div>
-        <div className="bg-blue-100 rounded-lg hover:bg-blue-800 hover:text-white cursor-pointer " onClick={onShare}>
-          Copy to share!
-        </div>
+      <div className="bg-blue-100 rounded-lg hover:bg-blue-800 hover:text-white cursor-pointer  " onClick={onShare}>
+        Share!
       </div>
     </div>
   )
