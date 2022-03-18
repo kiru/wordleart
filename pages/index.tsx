@@ -215,7 +215,7 @@ const Home: NextPage = () => {
 {/*[ ] Publish project on GitHub as Open Source (why not?)(postponed for now)*/}
 {/*[ ] Add license before publishing as OSS*/}
 {/*[ ] Clean this code a bit before putting it on GitHub`}</pre>*/}
-{/*          </div>*/}
+          </div>
         </div>
 
 
