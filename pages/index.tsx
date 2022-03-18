@@ -213,6 +213,7 @@ const Home: NextPage = () => {
 {`[ ] Deploy to wordleart.kiru.io
 [ ] Write an article on my page
 [ ] Publish project on GitHub as Open Source (why not?)(postponed for now)
+[ ] Add license before publishing as OSS
 [ ] Clean this code a bit before putting it on GitHub`}</pre>
           </div>
         </div>
