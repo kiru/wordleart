@@ -208,14 +208,14 @@ const Home: NextPage = () => {
               </div>
             </p>
 
-            <h2 className="text-xl pt-5">Roadmap</h2>
-            <pre className="whitespace-pre-wrap	">
-{`[ ] Deploy to wordleart.kiru.io
-[ ] Write an article on my page
-[ ] Publish project on GitHub as Open Source (why not?)(postponed for now)
-[ ] Add license before publishing as OSS
-[ ] Clean this code a bit before putting it on GitHub`}</pre>
-          </div>
+{/*            <h2 className="text-xl pt-5">Roadmap</h2>*/}
+{/*            <pre className="whitespace-pre-wrap	">*/}
+{/*{`[ ] Deploy to wordleart.kiru.io*/}
+{/*[ ] Write an article on my page*/}
+{/*[ ] Publish project on GitHub as Open Source (why not?)(postponed for now)*/}
+{/*[ ] Add license before publishing as OSS*/}
+{/*[ ] Clean this code a bit before putting it on GitHub`}</pre>*/}
+{/*          </div>*/}
         </div>
 
 
