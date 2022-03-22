@@ -204,7 +204,7 @@ const Home: NextPage = () => {
               <div className="gap-2 flex">
                 <Link link={"https://mathlegame.com/"} name="Mathle" />
                 <Link link={"https://reversle.net/"} name="Reversle" />
-                <Link link={"https://learnle.net/"} name="Reversle" />
+                <Link link={"https://learnle.net/"} name="Learnle" />
               </div>
             </p>
 
