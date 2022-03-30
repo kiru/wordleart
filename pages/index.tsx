@@ -50,7 +50,7 @@ let createMatrix = (rows: number, columns: number, defaultVaue: string): string[
 const WordleArtDrawer = () => {
   const [rows, setRows] = useState<number>(5);
   const [columns, setColumns] = useState<number>(5);
-  const [currentColor, setCurrentColor] = useState<string>("🟩");
+  const [currentColor, setCurrentColor] = useState<string>("🟧");
 
   const [values, setValues] = useState<string[][]>([[]])
 
@@ -191,6 +191,13 @@ const Home: NextPage = () => {
             <p className="w-1/2 pt-2 text-slate-700">
               I wanted a simple tool to create logo similar to how people share their Wordle results.
             </p>
+
+            <h2 className="text-xl">How to use?</h2>
+            <p className="w-1/2 pt-2 text-slate-700">
+              Click on the box to change the color. The current color is displayed below the tiles.
+              Click on "Share" to copy your new art work :)
+            </p>
+
 
             <h2 className="text-xl pt-5">Who made this?</h2>
             <p className="w-1/2 pt-2 text-slate-700">
