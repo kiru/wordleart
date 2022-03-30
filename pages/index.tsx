@@ -192,7 +192,7 @@ const Home: NextPage = () => {
               I wanted a simple tool to create logo similar to how people share their Wordle results.
             </p>
 
-            <h2 className="text-xl">How to use?</h2>
+            <h2 className="text-xl pt-5">How to use?</h2>
             <p className="w-1/2 pt-2 text-slate-700">
               Click on the box to change the color. The current color is displayed below the tiles.
               Click on "Share" to copy your new art work :)
